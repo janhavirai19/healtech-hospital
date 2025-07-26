@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Available Doctors |  HealTech Hospital</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+    body {
+      background-color: #0e0f1a;
+      color: #fff;
+      animation: fadeIn 1s ease-in;
+    }
+
+    nav {
+      background-color: #0e0f1a;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+      font-size: 16px;
+      border-bottom: 1px solid #1f2133;
+    }
+
+    nav a {
+      color: #00eaff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00fff2;
+    }
+
+    h2 {
+      text-align: center;
+      color: #00eaff;
+      margin: 40px 0 20px;
+      animation: slideDown 1s ease forwards;
+    }
+
+    .doctor-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .doctor-card {
+      background: linear-gradient(135deg, #131523, #1f2133);
+      border: 1px solid #00eaff;
+      border-radius: 12px;
+      padding: 20px;
+      width: 260px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: popUp 1s ease forwards;
+    }
+
+    .doctor-card:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+    }
+
+    .doctor-card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 2px solid #00eaff;
+      object-fit: cover;
+    }
+
+    .doctor-card h3 {
+      color: #00eaff;
+      margin-bottom: 8px;
+    }
+
+    .doctor-card p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popUp {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+    <a href="mail.html"><i class="fas fa-envelope"></i> Mail</a>
+    <a href="book_now.html"><i class="fas fa-calendar-plus"></i> Book Now</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  </nav>
+
+  <h2>👨‍⚕️ Our Available Doctors</h2>
+
+  <div class="doctor-container">
+    <div class="doctor-card">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. Mehta">
+      <h3>Dr. Mehta</h3>
+      <p>Dental Specialist</p>
+      <p>Time: 10:00 AM – 1:00 PM</p>
+    </div>
+
+    <div class="doctor-card">
+      <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Dr. Khan">
+      <h3>Dr. Khan</h3>
+      <p>Neurologist</p>
+      <p>Time: 2:00 PM – 5:00 PM</p>
+    </div>
+
+    <div class="doctor-card">
+      <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Dr. Roy">
+      <h3>Dr. Roy</h3>
+      <p>Cardiologist</p>
+      <p>Time: 11:30 AM – 3:00 PM</p>
+    </div>
+
+    <div class="doctor-card">
+      <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Dr. Sharma">
+      <h3>Dr. Sharma</h3>
+      <p>Orthopedic Surgeon</p>
+      <p>Time: 9:00 AM – 12:00 PM</p>
+    </div>
+
+    <div class="doctor-card">
+      <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Dr. Joshi">
+      <h3>Dr. Joshi</h3>
+      <p>Dermatologist</p>
+      <p>Time: 3:00 PM – 6:00 PM</p>
+    </div>
+
+   
+    <div class="doctor-card">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Nisha">
+      <h3>Dr. Nisha</h3>
+      <p>Pediatrician</p>
+      <p>Time: 10:00 AM – 2:00 PM</p>
+    </div>
+
+    <div class="doctor-card">
+      <img src="https://randomuser.me/api/portraits/women/47.jpg" alt="Dr. Priya">
+      <h3>Dr. Priya</h3>
+      <p>Gynecologist</p>
+      <p>Time: 1:00 PM – 4:00 PM</p>
+    </div>
+
+    <div class="doctor-card">
+      <img src="https://randomuser.me/api/portraits/women/52.jpg" alt="Dr. Anita">
+      <h3>Dr. Anita</h3>
+      <p>ENT Specialist</p>
+      <p>Time: 11:00 AM – 3:00 PM</p>
+    </div>
+
+    <div class="doctor-card">
+      <img src="https://randomuser.me/api/portraits/women/38.jpg" alt="Dr. Ritu">
+      <h3>Dr. Ritu</h3>
+      <p>Physiotherapist</p>
+      <p>Time: 9:30 AM – 12:30 PM</p>
+    </div>
+
+    <div class="doctor-card">
+      <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Dr. Shalini">
+      <h3>Dr. Shalini</h3>
+      <p>Psychiatrist</p>
+      <p>Time: 2:30 PM – 6:00 PM</p>
+    </div>
+  </div>
+
+</body>
+</html>

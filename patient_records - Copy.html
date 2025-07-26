@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Patient Records |  HealTech Hospital</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+    body {
+      background-color: #0e0f1a;
+      color: #fff;
+      animation: fadeIn 1s ease-in;
+    }
+
+    nav {
+      background-color: #0e0f1a;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+      font-size: 16px;
+      border-bottom: 1px solid #1f2133;
+    }
+
+    nav a {
+      color: #00eaff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00fff2;
+    }
+
+    h2 {
+      text-align: center;
+      color: #00eaff;
+      margin: 40px 0 20px;
+      animation: slideDown 1s ease forwards;
+    }
+
+    .records-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .patient-card {
+      background: linear-gradient(135deg, #131523, #1f2133);
+      border: 1px solid #00eaff;
+      border-radius: 12px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: popUp 1s ease forwards;
+    }
+
+    .patient-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+    }
+
+    .patient-card h3 {
+      color: #00eaff;
+      margin-bottom: 10px;
+    }
+
+    .patient-card p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popUp {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+ 
+  <nav>
+    <a href="dashboard.html"><i class="fas fa-home"></i> Home</a>
+    <a href="mail.html"><i class="fas fa-envelope"></i> Mail</a>
+    <a href="book_now.html"><i class="fas fa-calendar-plus"></i> Book Now</a>
+    <a href="patient_records.html"><i class="fas fa-file-medical"></i> Patient Records</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  </nav>
+
+  <h2>🗂️ Patient Records</h2>
+
+  <div class="records-container">
+    <div class="patient-card">
+      <h3>Riya Sharma</h3>
+      <p><strong>Patient ID:</strong> SHP-001</p>
+      <p><strong>Age/Gender:</strong> 25 / Female</p>
+      <p><strong>Contact:</strong> +91 9876543210</p>
+      <p><strong>Medical History:</strong> Asthma</p>
+      <p><strong>Condition:</strong> Stable</p>
+      <p><strong>Doctor:</strong> Dr. Khan</p>
+      <p><strong>Admitted:</strong> 2025-06-25</p>
+    </div>
+
+    <div class="patient-card">
+      <h3>Aarav Mehta</h3>
+      <p><strong>Patient ID:</strong> SHP-002</p>
+      <p><strong>Age/Gender:</strong> 40 / Male</p>
+      <p><strong>Contact:</strong> +91 9123456789</p>
+      <p><strong>Medical History:</strong> Diabetes</p>
+      <p><strong>Condition:</strong> Under observation</p>
+      <p><strong>Doctor:</strong> Dr. Roy</p>
+      <p><strong>Admitted:</strong> 2025-06-24</p>
+    </div>
+
+    <div class="patient-card">
+      <h3>Neha Joshi</h3>
+      <p><strong>Patient ID:</strong> SHP-003</p>
+      <p><strong>Age/Gender:</strong> 30 / Female</p>
+      <p><strong>Contact:</strong> +91 9988776655</p>
+      <p><strong>Medical History:</strong> Hypertension</p>
+      <p><strong>Condition:</strong> Recovering</p>
+      <p><strong>Doctor:</strong> Dr. Priya</p>
+      <p><strong>Admitted:</strong> 2025-06-23</p>
+    </div>
+
+    <div class="patient-card">
+      <h3>Raj Singh</h3>
+      <p><strong>Patient ID:</strong> SHP-004</p>
+      <p><strong>Age/Gender:</strong> 50 / Male</p>
+      <p><strong>Contact:</strong> +91 9871234567</p>
+      <p><strong>Medical History:</strong> Heart disease</p>
+      <p><strong>Condition:</strong> Critical</p>
+      <p><strong>Doctor:</strong> Dr. Roy</p>
+      <p><strong>Admitted:</strong> 2025-06-22</p>
+    </div>
+
+    <div class="patient-card">
+      <h3>Simran Kaur</h3>
+      <p><strong>Patient ID:</strong> SHP-005</p>
+      <p><strong>Age/Gender:</strong> 35 / Female</p>
+      <p><strong>Contact:</strong> +91 9012345678</p>
+      <p><strong>Medical History:</strong> Migraine</p>
+      <p><strong>Condition:</strong> Stable</p>
+      <p><strong>Doctor:</strong> Dr. Nisha</p>
+      <p><strong>Admitted:</strong> 2025-06-21</p>
+    </div>
+  </div>
+
+</body>
+</html>

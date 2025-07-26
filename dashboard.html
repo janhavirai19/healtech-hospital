@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> HealTech Hospital- Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background-color: #0e0f1a;
+      color: #fff;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .sidebar {
+      width: 80px;
+      background-color: #1a1c2b;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
+    .sidebar i {
+      color: #00eaff;
+      font-size: 20px;
+      margin: 20px 0;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .sidebar i:hover {
+      transform: scale(1.2);
+    }
+    .main {
+      flex: 1;
+      background-color: #131523;
+      padding: 30px;
+      overflow-y: auto;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      color: #00eaff;
+      font-size: 28px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background-color: #1f2133;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h3 {
+      font-size: 16px;
+      color: #ccc;
+    }
+    .card p {
+      font-size: 28px;
+      color: #00eaff;
+      margin-top: 10px;
+    }
+
+    .section-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .appointments-section {
+      flex: 1;
+      min-width: 400px;
+      background-color: #0e101b;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.05);
+    }
+    .appointments-section h2 {
+      color: #00f0ff;
+      font-size: 20px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .appointments-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      color: #e0e0e0;
+    }
+    .appointments-table th {
+      text-align: left;
+      padding: 14px;
+      background-color: #12131f;
+      color: #8f9bb3;
+      font-weight: 600;
+    }
+    .appointments-table td {
+      padding: 16px 14px;
+      background-color: #1a1c2b;
+      border-bottom: 1px solid #1f2133;
+    }
+    .appointments-table tr:last-child td {
+      border-bottom: none;
+    }
+    .dept, .date {
+      font-size: 12px;
+      color: #777;
+    }
+    .status {
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 12px;
+      display: inline-block;
+    }
+    .confirmed {
+      background-color: #00eaff22;
+      color: #00eaff;
+    }
+    .cancelled {
+      background-color: #ff004022;
+      color: #ff4d6d;
+    }
+
+    .doctor-section {
+      flex: 1;
+      min-width: 300px;
+      background-color: #131523;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    }
+    .doctor-section h2 {
+      color: #00eaff;
+      font-size: 22px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    .input-group {
+      margin-bottom: 18px;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: #aaa;
+    }
+    .input-group input,
+    .input-group select {
+      width: 100%;
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: none;
+      background-color: #1f2133;
+      color: #fff;
+      font-size: 14px;
+    }
+    .input-group input:focus,
+    .input-group select:focus {
+      outline: none;
+      box-shadow: 0 0 5px #00eaff;
+    }
+    .submit-btn {
+      background-color: #00eaff;
+      color: #000;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background-color 0.3s;
+    }
+    .submit-btn:hover {
+      background-color: #00cde3;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+   <a href="index.html"><i class="fas fa-home"></i></a> 
+   <a href="doctor.html"><i class="fas fa-user-md"></i></a>
+
+   <a href="patient_records.html"><i class="fas fa-user-md"></i></a>
+
+    <i class="fas fa-calendar-check"></i>
+    <i class="fas fa-sign-out-alt"></i>
+  </div>
+
+  <div class="main">
+    <div class="header">
+      <h1>Welcome, Admin</h1>
+      <i class="fas fa-bell"></i>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>Total Patients</h3>
+        <p>240</p>
+      </div>
+      <div class="card">
+        <h3>Appointments Today</h3>
+        <p>21</p>
+      </div>
+      <div class="card">
+        <h3>Available Doctors</h3>
+        <p>18</p>
+      </div>
+      <div class="card">
+        <h3>Recent Activity</h3>
+        <p>Patient Sharma checked out</p>
+      </div>
+    </div>
+
+    <div class="section-wrapper">
+    
+
+      <div class="appointments-section">
+        <h2>Appointments</h2>
+        <table class="appointments-table">
+          <thead>
+            <tr>
+              <th>Patient</th>
+              <th>Doctor</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ria Chauhan</td>
+              <td>Dr. Mehta<br><span class="dept">Dental</span></td>
+              <td>10:00 AM<br><span class="date">Apr 24</span></td>
+              <td><span class="status confirmed">Confirmed</span></td>
+            </tr>
+            <tr>
+              <td>Ayan Kumar</td>
+              <td>Dr. Khan<br><span class="dept">Neurology</span></td>
+              <td>02:00 PM<br><span class="date">Apr 26</span></td>
+              <td><span class="status cancelled">Cancelled</span></td>
+            </tr>
+            <tr>
+    <td>Ria Chauhan</td>
+    <td>Dr. Mehta<br><span class="dept">Dental</span></td>
+    <td>10:00 AM<br><span class="date">Apr 24</span></td>
+    <td><span class="status confirmed">Confirmed</span></td>
+  </tr>
+  <tr>
+    <td>Ayan Kumar</td>
+    <td>Dr. Khan<br><span class="dept">Neurology</span></td>
+    <td>02:00 PM<br><span class="date">Apr 26</span></td>
+    <td><span class="status cancelled">Cancelled</span></td>
+  </tr>
+  <tr>
+    <td>Sneha Desai</td>
+    <td>Dr. Roy<br><span class="dept">Cardiology</span></td>
+    <td>11:30 AM<br><span class="date">Apr 27</span></td>
+    <td><span class="status confirmed">Confirmed</span></td>
+  </tr>
+          </tbody>
+        </table>
+      </div>
+
+    
+      <div class="doctor-section">
+        <h2>Add New Doctor</h2>
+        <form>
+          <div class="input-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Dr. John Doe" required>
+          </div>
+          <div class="input-group">
+            <label for="department">Department</label>
+            <select id="department" required>
+              <option value="">Select</option>
+              <option value="Dental">Dental</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Cardiology">Cardiology</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" placeholder="9876543210" required>
+          </div>
+          <div class="input-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" placeholder="Hospital Street, City" required>
+          </div>
+          <button type="submit" class="submit-btn">Add Doctor</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

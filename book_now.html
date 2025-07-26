@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Appointment | HealTech Hospital</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+    body {
+      background-color: #0e0f1a;
+      color: white;
+      animation: fadeIn 1s ease-in;
+    }
+
+    nav {
+      background-color: #0e0f1a;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+      font-size: 16px;
+      border-bottom: 1px solid #1f2133;
+    }
+
+    nav a {
+      color: #00eaff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00fff2;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      background-color: #131523;
+      padding: 35px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+      animation: slideUp 1s ease;
+      position: relative;
+    }
+
+    h2 {
+      color: #00eaff;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .step {
+      display: none;
+      transition: all 0.5s ease;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+      background-color: #1f2133;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 14px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 8px #00eaff;
+    }
+
+    button {
+      background-color: #00eaff;
+      color: #000;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #00cde3;
+      transform: scale(1.02);
+    }
+
+    .progress {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .progress div {
+      flex: 1;
+      height: 5px;
+      margin: 0 4px;
+      background-color: #333;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .progress div.active {
+      background-color: #00eaff;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="mail.html"><i class="fas fa-envelope"></i> Mail</a>
+    <a href="book_now.html"><i class="fas fa-calendar-plus"></i> Book Now</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  </nav>
+
+
+
+  <div class="container">
+    <h2>🩺 Book Your Appointment</h2>
+    <div class="progress">
+      <div class="progress-step step1 active"></div>
+      <div class="progress-step step2"></div>
+      <div class="progress-step step3"></div>
+    </div>
+
+    <form id="bookingForm">
+      
+      <div class="step active" id="step1">
+        <input type="text" id="name" placeholder="Full Name" required />
+        <input type="email" id="email" placeholder="Email Address" required />
+        <button type="button" onclick="nextStep(2)">Next</button>
+      </div>
+
+      <div class="step" id="step2">
+        <select id="department" required>
+          <option value="">Select Department</option>
+          <option value="Dental">Dental</option>
+          <option value="Cardiology">Cardiology</option>
+          <option value="Neurology">Neurology</option>
+        </select>
+        <input type="datetime-local" id="appointmentDate" required />
+        <button type="button" onclick="prevStep(1)">Back</button>
+        <button type="button" onclick="nextStep(3)">Next</button>
+      </div>
+
+      <div class="step" id="step3">
+        <p>✅ Please confirm your details before booking.</p>
+        <ul>
+          <li><strong>Name:</strong> <span id="confName"></span></li>
+          <li><strong>Email:</strong> <span id="confEmail"></span></li>
+          <li><strong>Department:</strong> <span id="confDept"></span></li>
+          <li><strong>Date & Time:</strong> <span id="confDate"></span></li>
+        </ul>
+        <button type="button" onclick="prevStep(2)">Back</button>
+        <button type="submit">Book Appointment</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function nextStep(step) {
+      document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+      document.getElementById(`step${step}`).classList.add('active');
+
+      document.querySelectorAll('.progress div').forEach(el => el.classList.remove('active'));
+      for (let i = 1; i <= step; i++) {
+        document.querySelector(`.progress .step${i}`).classList.add('active');
+      }
+
+      if (step === 3) {
+        document.getElementById("confName").innerText = document.getElementById("name").value;
+        document.getElementById("confEmail").innerText = document.getElementById("email").value;
+        document.getElementById("confDept").innerText = document.getElementById("department").value;
+        document.getElementById("confDate").innerText = document.getElementById("appointmentDate").value;
+      }
+    }
+
+    function prevStep(step) {
+      nextStep(step);
+    }
+
+    document.getElementById("bookingForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("🎉 Your appointment has been booked successfully!");
+      window.location.reload();
+    });
+  </script>
+</body>
+</html>

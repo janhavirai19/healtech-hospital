@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mail | Smart Hospital</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+    body {
+      background-color: #0e0f1a;
+      color: white;
+      animation: fadeIn 1s ease-in;
+    }
+
+    nav {
+      background-color: #0e0f1a;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+      font-size: 16px;
+      border-bottom: 1px solid #1f2133;
+    }
+
+    nav a {
+      color: #00eaff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00fff2;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 60px auto;
+      background-color: #131523;
+      padding: 35px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+      animation: slideUp 1s ease;
+      position: relative;
+    }
+
+    h2 {
+      color: #00eaff;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+      background-color: #1f2133;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 14px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 8px #00eaff;
+    }
+
+    button {
+      background-color: #00eaff;
+      color: #000;
+      border: none;
+      padding: 12px 20px;
+      width: 100%;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #00cde3;
+      transform: scale(1.02);
+    }
+
+    .preview-box {
+      background-color: #1f2133;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      display: none;
+      box-shadow: 0 0 15px rgba(0, 234, 255, 0.3);
+      animation: fadeIn 0.8s ease;
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #00eaff, #00fff2);
+      width: 0%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      transition: width 0.5s ease;
+    }
+
+    .typing {
+      border-right: 2px solid #00eaff;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blink {
+      0%, 50% { border-color: #00eaff; }
+      51%, 100% { border-color: transparent; }
+    }
+
+    .success-check {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid #00eaff;
+      position: relative;
+      margin: 20px auto;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .success-check::after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 28px;
+      width: 15px;
+      height: 30px;
+      border-right: 3px solid #00eaff;
+      border-bottom: 3px solid #00eaff;
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+
+
+  <nav>
+    <a href="mail.html"><i class="fas fa-envelope"></i> Mail</a>
+    <a href="book_now.html"><i class="fas fa-calendar-plus"></i> Book Now</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  </nav>
+
+
+  <div class="container">
+    <h2>🤖 Smart Mail Assistant</h2>
+    <div class="progress-bar" id="progressBar"></div>
+    <form id="mailForm">
+      <input type="email" id="to" placeholder="To (Email Address)" required />
+      
+      <select id="subject">
+        <option value="">Select Subject</option>
+        <option value="Appointment Confirmation 🩺">Appointment Confirmation 🩺</option>
+        <option value="Medical Report Request 📄">Medical Report Request 📄</option>
+        <option value="Billing Query 💳">Billing Query 💳</option>
+        <option value="Feedback / Suggestions 💬">Feedback / Suggestions 💬</option>
+        <option value="Emergency Support 🚨">Emergency Support 🚨</option>
+        <option value="General Inquiry 🌐">General Inquiry 🌐</option>
+      </select>
+      
+      <textarea id="message" rows="5" placeholder="Your message..." required></textarea>
+      <button type="button" onclick="previewMail()">Preview Mail</button>
+    </form>
+
+    <div class="preview-box" id="previewBox">
+      <h3>📄 Preview</h3>
+      <p><strong>To:</strong> <span id="prevTo"></span></p>
+      <p><strong>Subject:</strong> <span id="prevSubject"></span></p>
+      <p><strong>Message:</strong></p>
+      <p id="prevMessage"></p>
+      <button onclick="sendMail()">Send Mail</button>
+    </div>
+
+    <div id="successBox" style="display:none; text-align:center;">
+      <div class="success-check"></div>
+      <h3 style="color:#00eaff;">Mail Sent Successfully!</h3>
+    </div>
+  </div>
+
+  <script>
+
+    function typeEffect(element, text, delay = 30, callback) {
+      let i = 0;
+      element.innerHTML = "";
+      let interval = setInterval(() => {
+        element.innerHTML += text.charAt(i);
+        i++;
+        if (i === text.length) {
+          clearInterval(interval);
+          if (callback) callback();
+        }
+      }, delay);
+    }
+
+    function previewMail() {
+      const to = document.getElementById("to").value;
+      const subject = document.getElementById("subject").value;
+      const message = document.getElementById("message").value;
+
+      if (to && subject && message) {
+        document.getElementById("prevTo").innerText = to;
+        document.getElementById("prevSubject").innerText = subject;
+
+        document.getElementById("prevMessage").innerText = "";
+        typeEffect(document.getElementById("prevMessage"), message);
+
+        document.getElementById("previewBox").style.display = "block";
+        document.getElementById("progressBar").style.width = "100%";
+      } else {
+        alert("Please fill in all fields before previewing.");
+      }
+    }
+
+    function sendMail() {
+      document.getElementById("previewBox").style.display = "none";
+      document.getElementById("progressBar").style.width = "0%";
+
+      document.getElementById("successBox").style.display = "block";
+
+      setTimeout(() => {
+        document.getElementById("mailForm").reset();
+        document.getElementById("successBox").style.display = "none";
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
